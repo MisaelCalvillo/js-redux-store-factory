@@ -253,5 +253,22 @@ function todos(state = [], action) {
 }
 ```
 
+### Add another reducer
+
+We now can track our goals as well as our todos, but our store doesn't have a mean to accept two reducers, we will see that in the next section... ⏭
+
+```javascript
+function goals(state = [], action) {
+  switch (action.type) {
+    case 'ADD_GOAL': 
+      return state.concat([ action.goal ])
+    case 'REMOVE_GOAL':
+      return state.filter((goal) => goal.id !== action.id)
+    default:
+      return state
+  }
+}
+```
+
 
 

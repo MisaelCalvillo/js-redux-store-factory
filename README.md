@@ -514,4 +514,40 @@ Create the UI inputs to interact with our store
   </div>
 ```
 
+### Dispatch new items
+
+Add items to our store trough the UI of our App
+
+```javascript
+     function generateId() {
+      return Math.random().toString(36).substring(2) + (new Date()).getTime().toString(36);
+    }
+  
+    function addTodo() {
+      const input = document.getElementById('todo')
+      const name = input.value
+      input.value = ''
+
+      store.dispatch(addTodoAction({
+        name,
+        complete: false,
+        id: generateId()
+      }))
+    }
+
+    function addGoal() {
+      const input = document.getElementById('goal')
+      const name = input.value
+      input.value = ''
+
+      store.dispatch(addGoalAction({
+        name,
+        id: generateId()
+      }))
+    }
+
+    document.getElementById('todoBtn').addEventListener('click', addTodo)
+    document.getElementById('goalBtn').addEventListener('click', addGoal)
+```
+
 

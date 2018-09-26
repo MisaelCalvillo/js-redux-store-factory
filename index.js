@@ -20,6 +20,11 @@ function createStore() {
       listeners = listeners.filter((l) => l !== listener)
     }
   }
+  
+  const dispatch = (action) => {
+    state = reducer(state, action)
+    listeners.forEach((listener) => listener())
+  }
 
   return {
     getState,

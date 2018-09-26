@@ -639,3 +639,51 @@ Use exclusivelly the UI to remove items from our store state.
     }
 ```
 
+### Use Redux library
+
+Now you have created your own implementation of Redux, it is time to use the real Redux library. 
+
+```javascript
+    const store = Redux.createStore(Redux.combineReducers({
+      todos,
+      goals
+    }));
+```
+
+The above code can substitute all the code writen in our `createStore` function and in our `app` reducer.
+
+```javascript
+    // Library code
+    function createStore(reducer) {
+
+    let state
+    let listeners = []
+
+    const getState = () => state
+
+    const subscribe = (listener) => {
+      listeners.push(listener)
+      return () => {
+        listeners = listeners.filter((l) => l !== listener)
+      }
+    }
+
+    const dispatch = (action) => {
+      state = reducer(state, action)
+      listeners.forEach((listener) => listener())
+    }
+
+    return {
+      getState,
+      subscribe,
+      dispatch
+    }
+    }
+
+  function app(state = {}, action){
+    return {
+      todos: todos(state.todos, action),
+      goals: goals(state.goals, action)
+    }
+  }
+```

@@ -476,5 +476,26 @@ store.dispatch(toggleTodoAction(0))
 
 ```
 
+## Add some UI to our store 🖼
+
+Crete a new `index.html` file and add a script tag inside with our entire code.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Udacity Todo Goals</title>
+</head>
+<body>
+  <script type="text/javascript">
+      // ... store code goes here 
+  </script>
+</body>
+</html>
+```
+
 
 

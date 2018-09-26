@@ -232,7 +232,25 @@ const unsubscribe = store.subscribe(() => {
 
 // unsubscribe(); // Do not unsubscribe yet
 
+```
 
+### Add 'REMOVE_TODO' and 'TOGGLE_TODO' actions
+
+```javascript
+// App code
+function todos(state = [], action) {
+  switch (action.type) {
+    case 'ADD_TODO':
+      return state.concat([ action.todo ])
+    case 'REMOVE_TODO':
+      return state.filter( (todo) => todo.id !== action.id)
+    case 'TOGGLE_TODO': 
+      return state.map( (todo) => todo.id !== action.id ? todo :
+      Object.assign({}, todo, { complete: !todo.complete}))
+    default: 
+      return state
+  }
+}
 ```
 
 

@@ -550,4 +550,49 @@ Add items to our store trough the UI of our App
     document.getElementById('goalBtn').addEventListener('click', addGoal)
 ```
 
+### Update the UI
+
+Add UI elements depending on the changes made to the store's state.
+
+```html
+    <ul id="goals"></ul>
+
+    <ul id="todos"></ul>
+```
+
+```javascript
+
+    store.subscribe(() => {
+        const { goals, todos } = store.getState()
+
+        document.getElementById('goals').innerHTML = ''
+        document.getElementById('todos').innerHTML = ''
+
+        goals.forEach(addGoalToDOM)
+        todos.forEach(addTodoToDOM)
+    })
+
+
+    function addTodoToDOM(todo) {
+      const node = document.createElement('li')
+      const text = document.createTextNode(todo.name)
+      node.appendChild(text)
+      node.style.textDecoration = todo.complete ? 'line-through' : 'none'
+      node.addEventListener('click', () => {
+        store.dispatch(toggleTodoAction(todo.id))
+      })
+
+      document.getElementById('todos').appendChild(node);
+
+    }
+
+    function addGoalToDOM(goal) {
+      const node = document.createElement('li')
+      const text = document.createTextNode(goal.name)
+      node.appendChild(text)
+
+      document.getElementById('goals').append(node)
+    }
+
+```
 

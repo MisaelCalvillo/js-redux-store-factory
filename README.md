@@ -270,5 +270,21 @@ function goals(state = [], action) {
 }
 ```
 
+### Add a 'root reducer' to combine several reducers
+
+With this reducer called `app` we can now combine many reducers in our store.
+
+```javascript
+function app(state = {}, action){
+  return {
+    todos: todos(state.todos, action),
+    goals: goals(state.goals, action)
+  }
+}
+
+const store = createStore(app);
+
+```
+
 
 

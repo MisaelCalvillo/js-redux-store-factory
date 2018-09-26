@@ -497,5 +497,21 @@ Crete a new `index.html` file and add a script tag inside with our entire code.
 </html>
 ```
 
+### Inputs
+
+Create the UI inputs to interact with our store
+
+```html
+  <div>
+    <h1>Todos List</h1>
+    <input type="text" id="todoInput" placeholder="Add a todo">
+    <button id="todoButton">Save Todo</button>
+  </div>
+  <div>
+    <h1>Goals List</h1>
+    <input type="text" id="goalsInput" placeholder="Add a goal">
+    <button id="goalsButton">Save goal</button>
+  </div>
+```
 
 

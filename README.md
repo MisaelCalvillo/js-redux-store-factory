@@ -687,3 +687,33 @@ The above code can substitute all the code writen in our `createStore` function 
     }
   }
 ```
+
+### Implement a Middleware 
+
+Use a Middleware to intercept the actions and execute logic based on them. 
+
+```javascript
+    function checkAndDispatch(store, action) {
+      if (
+        action.type === ADD_TODO &&
+        action.todo.name.toLowerCase().includes('bitcoin')
+      ) {
+        return alert("Nope. That's a bad idea.")
+      }
+      if (
+        action.type === ADD_GOAL &&
+        action.goal.name.toLowerCase().includes('bitcoin')
+      ) {
+        return alert("Nope. That's a bad idea.")
+      }
+
+      return store.dispatch(action)
+    }
+
+
+      checkAndDispatch(store, addTodoAction({
+        name,
+        complete: false,
+        id: generateId()
+      }))
+```

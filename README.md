@@ -755,3 +755,36 @@ The Redux library includes already a Middleware function and its own way of impl
       id: generateId()
     }))
 ```
+
+### Add two more Middlewares 
+
+Add two middlewares to our app that perform different tasks.
+
+>Display an alert "That's a great goal!" whenever a new goal is added.
+
+>Display "Don't forget to [name of your todo item]!" whenever a new todo item is added.
+
+```javascript 
+
+    const goalChecker = (store) => (next) => (action) => {
+      if (action.type === ADD_GOAL) {
+        alert('That\'s a great goal!')
+      }
+
+      return next(action)
+    }
+
+    const todoReminder = (store) => (next) => (action) => {
+      if (action.type === ADD_TODO) {
+        console.log(`Don't forget to ${action.todo.name}`)
+      }
+      return next(action)
+    }
+    
+
+    const store = Redux.createStore(Redux.combineReducers({
+      todos,
+      goals
+    }), Redux.applyMiddleware(checker, logger, goalChecker, todoReminder));
+
+```

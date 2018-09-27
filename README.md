@@ -717,3 +717,41 @@ Use a Middleware to intercept the actions and execute logic based on them.
         id: generateId()
       }))
 ```
+
+### Implement a Middleware with Redux library
+
+The Redux library includes already a Middleware function and its own way of implementing it.
+
+```javascript
+    const checker = (store) => (next) => (action) => {
+      if (
+        action.type === ADD_TODO &&
+        action.todo.name.toLowerCase().includes('bitcoin')
+      ) {
+        return alert("Nope. That's a bad idea.")
+      }
+      if (
+        action.type === ADD_GOAL &&
+        action.goal.name.toLowerCase().includes('bitcoin')
+      ) {
+        return alert("Nope. That's a bad idea.")
+      }
+  
+      return next(action)
+    }
+
+    // Invoque the Redux middleware function as a second argument with the checker
+    // function passed as an argument.
+    const store = Redux.createStore(Redux.combineReducers({
+      todos,
+      goals
+    }), Redux.applyMiddleware(checker));
+
+
+    // to dispatch an action you can just call the dispatch function
+    store.dispatch(addTodoAction({
+      name,
+      complete: false,
+      id: generateId()
+    }))
+```

@@ -788,3 +788,64 @@ Add two middlewares to our app that perform different tasks.
     }), Redux.applyMiddleware(checker, logger, goalChecker, todoReminder));
 
 ```
+
+## Time to add React
+
+Now lets integrate Redux with React
+
+```html
+    <head>
+      <script src="https://unpkg.com/react@16.3.0-alpha.1/umd/react.development.js"></script>
+      <script src="https://unpkg.com/react-dom@16.3.0-alpha.1/umd/react-dom.development.js"></script>
+      <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    </head>
+  <script type="text/babel">
+
+    function List (props) {
+      return (
+        <ul>
+          <li>LIST</li>
+        </ul>
+      )
+    }
+
+    class Todos extends React.Component {
+      render() {
+        return (
+          <div>
+            Todos 
+            <List />
+          </div>
+        )
+      }
+    }
+    class Goals extends React.Component {
+      render() {
+        return (
+          <div>
+            Goals
+            <List />
+          </div>
+        )
+      }
+    }
+
+    class App extends React.Component {
+      render() {
+        return (
+          <div>
+            <Todos />
+            <Goals />
+          </div>
+        )
+      }
+    }
+
+
+
+    ReactDOM.render(
+      <App />,
+      document.getElementById('app') 
+    )
+  </script>
+```

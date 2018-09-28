@@ -919,7 +919,7 @@ Now lets integrate Redux with React
     ReactDOM.render(
       <App store={store}/>,
       document.getElementById('app') 
-    )
+     
   </script>
 ```
 
@@ -957,6 +957,7 @@ Now lets integrate Redux with React
 ### Force load app
 
 Force the app to update in the React-Redux way.
+Force the App to update when the store subscribe gets executed
 
 ```javascript
     class App extends React.Component {

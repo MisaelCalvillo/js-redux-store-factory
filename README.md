@@ -980,3 +980,7 @@ Force the App to update when the store subscribe gets executed
       }
     }
 ```
+
+### Fetch some data from a server with Redux
+
+

@@ -198,14 +198,15 @@
 
       addItem = (e) => {
         e.preventDefault()
-        const name = this.input.value
-        this.input.value = ''
 
-        this.props.store.dispatch(addTodoAction({
-          name,
-          complete: false,
-          id: generateId()
-        }))
+        return API.saveTodo(this.input.value)
+          .then((todo) => {
+            this.props.store.dispatch(addTodoAction(todo))
+            this.input.value = ''
+          })
+          .catch(() => {
+            alert('There wan an error. Try again.')
+          })
       }
 
       removeItem = (todo) => {
@@ -220,6 +221,12 @@
 
       toggleItem = (id) => {
         this.props.store.dispatch(toggleTodoAction(id))
+
+        return API.saveTodoToggle(id)
+          .catch(() => {
+            this.props.store.dispatch(toggleTodoAction(id))
+            alert('An error occurred. Try again.')
+          })
       }
 
       render() {
@@ -245,13 +252,13 @@
     class Goals extends React.Component {
       addItem = (e) => {
         e.preventDefault()
-        const name = this.input.value
-        this.input.value = ''
-        
-        this.props.store.dispatch(addGoalAction({
-          id: generateId(),
-          name,
-        }))
+
+        return API.saveGoal(this.input.value)
+          .then((goal) => {
+            this.props.store.dispatch(addGoalAction(goal))
+            this.input.value = ''
+          })
+          .catch(() => alert('There wan an error. Try again.'))
 
       }
 
